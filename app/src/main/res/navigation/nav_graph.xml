@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/feedFragment">
+
+    <action
+        android:id="@+id/action_global_to_detailsFragment"
+        app:destination="@id/detailsFragment" />
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.chiore.rickandmortyapp.ui.fragments.feedfragment.FeedFragment"
+        android:label="FeedFragment"
+        tools:layout="@layout/feed_fragment"/>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.chiore.rickandmortyapp.ui.fragments.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/episodeFragment"
+        android:name="com.chiore.rickandmortyapp.ui.fragments.EpisodeFragment"
+        android:label="EpisodeFragment" >
+        <action
+            android:id="@+id/action_episodeFragment_to_episodeDetailsFragment"
+            app:destination="@id/episodeDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saveFragment"
+        android:name="com.chiore.rickandmortyapp.ui.fragments.SaveFragment"
+        android:label="SaveFragment" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.chiore.rickandmortyapp.ui.fragments.DetailsFragment"
+        android:label="DetailsFragment" />
+    <dialog
+        android:id="@+id/bottomSheetFragment"
+        android:name="com.chiore.rickandmortyapp.ui.fragments.BottomSheetFragment"
+        android:label="BottomSheetFragment" />
+    <fragment
+        android:id="@+id/episodeDetailsFragment"
+        android:name="com.chiore.rickandmortyapp.ui.fragments.EpisodeDetailsFragment"
+        android:label="EpisodeDetailsFragment" />
+</navigation>
