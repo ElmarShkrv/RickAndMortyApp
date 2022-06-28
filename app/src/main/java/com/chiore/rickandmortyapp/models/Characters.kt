@@ -1,5 +1,9 @@
 package com.chiore.rickandmortyapp.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Characters(
     val episode: List<String>,
     val gender: String,
@@ -11,4 +15,6 @@ data class Characters(
     val species: String,
     val status: String,
     val type: String
-)
+) : Parcelable {
+
+}

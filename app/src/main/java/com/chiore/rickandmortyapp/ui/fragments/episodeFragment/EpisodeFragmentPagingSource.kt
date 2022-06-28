@@ -1,21 +1,22 @@
-package com.chiore.rickandmortyapp.ui.fragments.feedfragment
+package com.chiore.rickandmortyapp.ui.fragments.episodeFragment
 
 import android.net.Uri
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.chiore.rickandmortyapp.api.SimpleApi
-import com.chiore.rickandmortyapp.models.Characters
+import com.chiore.rickandmortyapp.models.EpisodeResult
 
-class FeedFragmentPagingSource(
+class EpisodeFragmentPagingSource(
     private val simpleApi: SimpleApi
-) : PagingSource<Int, Characters>() {
-    override fun getRefreshKey(state: PagingState<Int, Characters>): Int? {
+) : PagingSource<Int, EpisodeResult>() {
+    override fun getRefreshKey(state: PagingState<Int, EpisodeResult>): Int? {
         return null
     }
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Characters> {
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, EpisodeResult> {
         val pageNumber = params.key ?: 1
         return try {
-            val response = simpleApi.getAllCharacters(pageNumber)
+            val response = simpleApi.getAllEpisodes(pageNumber)
             val pagedResponse = response.body()
             val data = pagedResponse?.results
 
@@ -35,5 +36,4 @@ class FeedFragmentPagingSource(
             LoadResult.Error(e)
         }
     }
-
 }

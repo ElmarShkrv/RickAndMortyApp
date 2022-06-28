@@ -17,6 +17,6 @@
         android:visibility="visible"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/feed_fragment_rv" ></androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/feed_fragment_rv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

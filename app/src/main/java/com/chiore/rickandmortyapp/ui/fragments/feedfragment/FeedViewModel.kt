@@ -13,13 +13,6 @@ class FeedViewModel
     private val repository: FeedRepository
 ) : ViewModel() {
 
-    /*
-    val listData = Pager(PagingConfig(pageSize = 1)) {
-        FeedFragmentPagingSource(simpleApi)
-    }.flow.cachedIn(viewModelScope)
-
-     */
-
     val listData = repository.getCharactersLiveData().cachedIn(viewModelScope)
 
 }

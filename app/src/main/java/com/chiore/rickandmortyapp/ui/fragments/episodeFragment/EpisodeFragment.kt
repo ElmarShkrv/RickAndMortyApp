@@ -1,4 +1,4 @@
-package com.chiore.rickandmortyapp.ui.fragments.feedfragment
+package com.chiore.rickandmortyapp.ui.fragments.episodeFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,26 +7,29 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chiore.rickandmortyapp.R
-import com.chiore.rickandmortyapp.adapters.FeedAdapter
+import com.chiore.rickandmortyapp.adapters.EpisodeAdapter
+import com.chiore.rickandmortyapp.databinding.EpisodeFragmentBinding
 import com.chiore.rickandmortyapp.databinding.FeedFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FeedFragment : Fragment(R.layout.feed_fragment) {
+class EpisodeFragment : Fragment(R.layout.episode_fragment) {
 
-    private var _binding: FeedFragmentBinding? = null
+    private var _binding: EpisodeFragmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var feedAdapter: FeedAdapter
-    private val viewModel: FeedViewModel by viewModels()
+    private lateinit var episodeAdapter: EpisodeAdapter
+    private val viewModel: EpisodeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FeedFragmentBinding.inflate(inflater, container, false)
+        _binding = EpisodeFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -38,20 +41,19 @@ class FeedFragment : Fragment(R.layout.feed_fragment) {
     }
 
     private fun getCharacters() {
-        viewModel.listData.observe(viewLifecycleOwner, Observer { pagingData ->
-                feedAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
+        viewModel.listEpisode.observe(viewLifecycleOwner, Observer { pagingData ->
+            episodeAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
         })
     }
 
-
     private fun setupRv() {
-        feedAdapter = FeedAdapter()
-        binding.feedRv.layoutManager =
+        episodeAdapter = EpisodeAdapter()
+        binding.episodeRv.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.feedRv.apply {
-            adapter = feedAdapter
+        binding.episodeRv.addItemDecoration(DividerItemDecoration(requireContext(),RecyclerView.VERTICAL))
+        binding.episodeRv.apply {
+            adapter = episodeAdapter
             setHasFixedSize(true)
-            visibility = View.VISIBLE
         }
     }
 
@@ -59,4 +61,5 @@ class FeedFragment : Fragment(R.layout.feed_fragment) {
         super.onDestroyView()
         _binding = null
     }
+
 }

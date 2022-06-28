@@ -36,6 +36,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="Rick Sanchez"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -46,10 +48,26 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="100dp">
+
+                <ImageView
+                    android:id="@+id/imgCharacterStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_launcher_background" />
+
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/feedRvStatus"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:layout_margin="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -60,7 +78,7 @@
             <TextView
                 android:id="@+id/feedRvSpecies"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:layout_margin="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
