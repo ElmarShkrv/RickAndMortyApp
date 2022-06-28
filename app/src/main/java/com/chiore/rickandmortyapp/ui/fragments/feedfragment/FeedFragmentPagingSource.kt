@@ -17,7 +17,7 @@ class FeedFragmentPagingSource(
         return try {
             val response = simpleApi.getAllCharacters(pageNumber)
             val pagedResponse = response.body()
-            val data = pagedResponse?.characters
+            val data = pagedResponse?.results
 
             var nextPageNumber: Int? = null
             if (pagedResponse?.info?.next != null) {
