@@ -1,11 +1,11 @@
 package com.chiore.rickandmortyapp.models
 
 data class EpisodeResult(
-    val air_date: String,
-    val characters: List<String>,
-    val created: String,
-    val episode: String,
-    val id: Int,
-    val name: String,
-    val url: String
+    val air_date: String = "",
+    val characters: List<String> = listOf(),
+    val created: String = "",
+    val episode: String = "",
+    val id: Int = 0,
+    val name: String = "",
+    val url: String = ""
 )

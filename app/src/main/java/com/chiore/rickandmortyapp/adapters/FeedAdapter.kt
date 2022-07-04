@@ -54,8 +54,6 @@ class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(Di
                         imgCharacterStatus.setColorFilter(Color.parseColor("#F8F816"))
                     }
                 }
-
-
             }
         }
     }
@@ -68,7 +66,6 @@ class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(Di
 
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
-
         getItem(position)?.let { holder.bind(it) }
     }
 

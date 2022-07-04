@@ -73,16 +73,14 @@
             app:layout_constraintTop_toBottomOf="@+id/aliveTextView"
             android:text="Episode"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/episodeTv"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detailsRv"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorOnBackground"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@id/episode"
-            app:layout_constraintStart_toStartOf="@id/episode"
-            tools:text="Number of episodes: 59" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/episode"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/Origin"
@@ -95,7 +93,7 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/episodeTv"
+            app:layout_constraintTop_toBottomOf="@+id/detailsRv"
             android:text="Origin" />
 
         <androidx.appcompat.widget.AppCompatTextView
