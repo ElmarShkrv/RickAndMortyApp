@@ -48,11 +48,13 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
         args.character?.let {
             character = it
         }
-
         viewModel.refreshCharachter(character.id)
-
         detailsFromFeed()
+        setupRv()
 
+    }
+
+    private fun setupRv() {
         viewModel.charachterByLiveData.observe(
             viewLifecycleOwner,
             Observer { characterEpisodeList ->
@@ -66,9 +68,6 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
                 }
 
             })
-
-        //setupRv()
-
     }
 
     private fun detailsFromFeed() {
@@ -81,26 +80,22 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
             aliveTextView.text = character.status
             OriginTxt.text = character.origin.name
             SpeciesTxt.text = character.species
-            //episodeTv.text = "Number of episodes: ${character.episode.size.toString()}"
 
-            when (character.gender) {
-                CharacterGenderEnums.CHARACTER_GENDER_FEMALE.value -> genderImageView.findViewById<ImageView>(
-                    R.drawable.ic_female
-                )
-                CharacterGenderEnums.CHARACTER_GENDER_MALE.value -> genderImageView.findViewById<ImageView>(
-                    R.drawable.ic_male
-                )
-                CharacterGenderEnums.CHARACTER_GENDER_GENDERLESS.value -> genderImageView.findViewById<ImageView>(
-                    R.drawable.ic_genderles
-                )
-                CharacterGenderEnums.CHARACTER_GENDER_UNKNOWN.value -> genderImageView.findViewById<ImageView>(
-                    R.drawable.ic_unkown
-                )
-                else -> {
-                    genderImageView.findViewById<ImageView>(R.drawable.ic_unkown)
-                }
-            }
+            genderSetup()
+        }
+    }
 
+    private fun genderSetup() {
+        if (character.gender.equals("Male", true)) {
+            binding.genderImageView.setImageResource(R.drawable.ic_male)
+        }
+        else if (character.gender.equals("Female", true)) {
+            binding.genderImageView.setImageResource(R.drawable.ic_female)
+        }
+        else if (character.gender.equals("genderless", true)) {
+            binding.genderImageView.setImageResource(R.drawable.ic_genderles)
+        } else {
+            binding.genderImageView.setImageResource(R.drawable.ic_unkown)
         }
     }
 
