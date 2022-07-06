@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -14,11 +13,7 @@ import com.bumptech.glide.Glide
 import com.chiore.rickandmortyapp.R
 import com.chiore.rickandmortyapp.adapters.DetailsAdapter
 import com.chiore.rickandmortyapp.databinding.DetailsFragmentBinding
-import com.chiore.rickandmortyapp.databinding.FeedFragmentBinding
-import com.chiore.rickandmortyapp.domain.models.Character
-import com.chiore.rickandmortyapp.enum.CharacterGenderEnums
 import com.chiore.rickandmortyapp.models.Characters
-import com.chiore.rickandmortyapp.models.Episode
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -38,6 +38,9 @@ class EpisodeFragment : Fragment(R.layout.episode_fragment) {
         super.onViewCreated(view, savedInstanceState)
         setupRv()
         getCharacters()
+
+
+
     }
 
     private fun getCharacters() {

@@ -27,15 +27,20 @@ interface SimpleApi {
         @Path("character-id") characterId : Int
     ): Response<Characters>
 
-    @GET("episode/{episode-id}")
-    suspend fun getEpisodeById(
-        @Path("episode-id") episodeId: Int
-    ): Response<EpisodeResult>
+    @GET("character/{character-range}")
+    suspend fun getCharacterRange(
+        @Path("character-range") characterId: String
+    ): Response<List<Characters>>
 
     @GET("episode/{episode-range}")
     suspend fun getEpisodeRange(
         @Path("episode-range") episodeId: String
     ): Response<List<EpisodeResult>>
+
+    @GET("episode/{episode-id}")
+    suspend fun getEpisodeById(
+        @Path("episode-id") episodeId: Int
+    ): Response<EpisodeResult>
 
 
 

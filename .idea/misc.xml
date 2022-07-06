@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/dialog_bg.xml" value="0.1765" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/ic_feed.xml" value="0.1765" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout-v28/feed_row.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/bottom_row.xml" value="0.2076923076923077" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/bottomsheet_fragment.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/character_fragment.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/detail_row.xml" value="0.22826086956521738" />

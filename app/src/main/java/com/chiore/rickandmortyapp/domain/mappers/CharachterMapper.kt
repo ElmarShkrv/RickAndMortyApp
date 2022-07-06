@@ -12,7 +12,7 @@ object CharachterMapper {
     ): Character {
         return Character(
             episodeList = episodes.map {
-                EpisodeMapper.buildFrom(it)
+                EpisodeMapper.buildFrom(it, emptyList())
             },
             gender = response.gender,
             id = response.id,

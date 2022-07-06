@@ -13,37 +13,43 @@
         android:id="@+id/feedFragment"
         android:name="com.chiore.rickandmortyapp.ui.fragments.feedfragment.FeedFragment"
         android:label="FeedFragment"
-        tools:layout="@layout/feed_fragment"/>
+        tools:layout="@layout/feed_fragment" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.chiore.rickandmortyapp.ui.fragments.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment"
+        tools:layout="@layout/search_fragment" />
     <fragment
         android:id="@+id/episodeFragment"
         android:name="com.chiore.rickandmortyapp.ui.fragments.episodeFragment.EpisodeFragment"
-        android:label="EpisodeFragment" >
+        android:label="EpisodeFragment"
+        tools:layout="@layout/episode_fragment" >
         <action
-            android:id="@+id/action_episodeFragment_to_episodeDetailsFragment"
-            app:destination="@id/episodeDetailsFragment" />
+            android:id="@+id/action_episodeFragment_to_bottomSheetFragment"
+            app:destination="@id/bottomSheetFragment" />
     </fragment>
     <fragment
         android:id="@+id/saveFragment"
         android:name="com.chiore.rickandmortyapp.ui.fragments.SaveFragment"
-        android:label="SaveFragment" />
+        android:label="SaveFragment"
+        tools:layout="@layout/save_fragment" />
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.chiore.rickandmortyapp.ui.fragments.detailsfragment.DetailsFragment"
-        android:label="DetailsFragment" >
+        android:label="DetailsFragment"
+        tools:layout="@layout/details_fragment">
         <argument
             android:name="character"
             app:argType="com.chiore.rickandmortyapp.models.Characters" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"
-        android:name="com.chiore.rickandmortyapp.ui.fragments.BottomSheetFragment"
-        android:label="BottomSheetFragment" />
-    <fragment
-        android:id="@+id/episodeDetailsFragment"
-        android:name="com.chiore.rickandmortyapp.ui.fragments.EpisodeDetailsFragment"
-        android:label="EpisodeDetailsFragment" />
+        android:name="com.chiore.rickandmortyapp.ui.fragments.bottomfragment.BottomSheetFragment"
+        android:label="BottomSheetFragment"
+        tools:layout="@layout/bottomsheet_fragment" >
+        <argument
+            android:name="episodeId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </dialog>
 </navigation>

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chiore.rickandmortyapp.databinding.DetailRowBinding
-import com.chiore.rickandmortyapp.databinding.EpisodeRowBinding
 import com.chiore.rickandmortyapp.domain.models.Episode
 
 class DetailsAdapter(var episodeList: List<Episode>): RecyclerView.Adapter<DetailsAdapter.DetailViewHolder>() {

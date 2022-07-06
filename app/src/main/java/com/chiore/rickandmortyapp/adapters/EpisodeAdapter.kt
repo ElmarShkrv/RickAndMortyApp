@@ -2,17 +2,26 @@ package com.chiore.rickandmortyapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.chiore.rickandmortyapp.databinding.EpisodeRowBinding
 import com.chiore.rickandmortyapp.models.EpisodeResult
+import com.chiore.rickandmortyapp.ui.fragments.episodeFragment.EpisodeFragmentDirections
 
 class EpisodeAdapter : PagingDataAdapter<EpisodeResult, EpisodeAdapter.EpisodeViewHolder>(DiffCallback()) {
 
     inner class EpisodeViewHolder(private val binding: EpisodeRowBinding) :
             RecyclerView.ViewHolder(binding.root) {
                 fun bind(episodeResult: EpisodeResult) {
+
+                    itemView.setOnClickListener { view ->
+                        val action = EpisodeFragmentDirections
+                            .actionEpisodeFragmentToBottomSheetFragment(episodeResult.id)
+                        Navigation.findNavController(view).navigate(action)
+                    }
+
                     with(binding) {
                         episodeName.text = episodeResult.name
                         episodeCreated.text = "Created: ${episodeResult.created}"
