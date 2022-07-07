@@ -45,11 +45,6 @@
         <action
             android:id="@+id/action_detailsFragment_to_bottomSheetFragment"
             app:destination="@id/bottomSheetFragment" />
-        <argument
-            android:name="dataFromBottom"
-            app:argType="com.chiore.rickandmortyapp.domain.models.Character"
-            app:nullable="true"
-            android:defaultValue="@null" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"
