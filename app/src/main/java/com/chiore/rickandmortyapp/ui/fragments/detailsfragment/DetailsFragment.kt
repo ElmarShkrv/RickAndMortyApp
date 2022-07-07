@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.chiore.rickandmortyapp.R
 import com.chiore.rickandmortyapp.adapters.DetailsAdapter
 import com.chiore.rickandmortyapp.databinding.DetailsFragmentBinding
-import com.chiore.rickandmortyapp.models.Characters
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +21,8 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
     private var _binding: DetailsFragmentBinding? = null
     private val binding get() = _binding!!
     private val args: DetailsFragmentArgs by navArgs()
-    private lateinit var character: Characters
+    //private lateinit var character: Characters
+    //private lateinit var bottomData: Character
     private val viewModel: DetailsViewModel by viewModels()
     private lateinit var detailsAdapter: DetailsAdapter
 
@@ -40,13 +40,61 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        args.character?.let {
-            character = it
-        }
-        viewModel.refreshCharachter(character.id)
-        detailsFromFeed()
+
+        viewModel.refreshCharachter(args.characterId)
+
+        setupUi()
         setupRv()
 
+
+    }
+
+    private fun setupUi() {
+        viewModel.charachterByLiveData.observe(
+            viewLifecycleOwner,
+            Observer { characterData ->
+                characterData?.let { character ->
+                    binding.apply {
+                        Glide.with(requireView())
+                            .load(character.image)
+                            .into(headerImageView)
+
+                        nameTextView.text = character.name
+                        aliveTextView.text = character.status
+                        OriginTxt.text = character.origin.name
+                        SpeciesTxt.text = character.species
+
+                        genderSetup()
+                    }
+                }
+            }
+        )
+    }
+
+
+
+    private fun genderSetup() {
+
+        viewModel.charachterByLiveData.observe(
+            viewLifecycleOwner,
+            Observer { characterData ->
+                characterData?.let { character ->
+                    binding.apply {
+
+                        if (character.gender.equals("Male", true)) {
+                            genderImageView.setImageResource(R.drawable.ic_male)
+                        } else if (character.gender.equals("Female", true)) {
+                            genderImageView.setImageResource(R.drawable.ic_female)
+                        } else if (character.gender.equals("genderless", true)) {
+                            genderImageView.setImageResource(R.drawable.ic_genderles)
+                        } else {
+                            genderImageView.setImageResource(R.drawable.ic_unkown)
+                        }
+
+                    }
+                }
+            }
+        )
     }
 
     private fun setupRv() {
@@ -63,35 +111,6 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
                 }
 
             })
-    }
-
-    private fun detailsFromFeed() {
-        binding.apply {
-            Glide.with(requireView())
-                .load(character.image)
-                .into(headerImageView)
-
-            nameTextView.text = character.name
-            aliveTextView.text = character.status
-            OriginTxt.text = character.origin.name
-            SpeciesTxt.text = character.species
-
-            genderSetup()
-        }
-    }
-
-    private fun genderSetup() {
-        if (character.gender.equals("Male", true)) {
-            binding.genderImageView.setImageResource(R.drawable.ic_male)
-        }
-        else if (character.gender.equals("Female", true)) {
-            binding.genderImageView.setImageResource(R.drawable.ic_female)
-        }
-        else if (character.gender.equals("genderless", true)) {
-            binding.genderImageView.setImageResource(R.drawable.ic_genderles)
-        } else {
-            binding.genderImageView.setImageResource(R.drawable.ic_unkown)
-        }
     }
 
 

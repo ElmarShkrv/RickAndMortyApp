@@ -39,8 +39,17 @@
         android:label="DetailsFragment"
         tools:layout="@layout/details_fragment">
         <argument
-            android:name="character"
-            app:argType="com.chiore.rickandmortyapp.models.Characters" />
+            android:name="characterId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_detailsFragment_to_bottomSheetFragment"
+            app:destination="@id/bottomSheetFragment" />
+        <argument
+            android:name="dataFromBottom"
+            app:argType="com.chiore.rickandmortyapp.domain.models.Character"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"

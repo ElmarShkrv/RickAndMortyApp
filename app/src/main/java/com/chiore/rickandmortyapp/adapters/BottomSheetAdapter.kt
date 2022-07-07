@@ -2,18 +2,23 @@ package com.chiore.rickandmortyapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.chiore.rickandmortyapp.R
 import com.chiore.rickandmortyapp.databinding.BottomRowBinding
 import com.chiore.rickandmortyapp.domain.models.Character
+import com.chiore.rickandmortyapp.ui.fragments.bottomfragment.BottomSheetFragmentDirections
+
+
 
 class BottomSheetAdapter(var characterList: List<Character>) :
     RecyclerView.Adapter<BottomSheetAdapter.BottomSheetViewHolder>() {
 
     class BottomSheetViewHolder(val binding: BottomRowBinding) :
         RecyclerView.ViewHolder(binding.root)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BottomSheetViewHolder {
         val binding = BottomRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,6 +28,17 @@ class BottomSheetAdapter(var characterList: List<Character>) :
     override fun onBindViewHolder(holder: BottomSheetViewHolder, position: Int) {
         val currentItem = characterList[position]
         holder.binding.apply {
+
+            /*
+
+            holder.itemView.setOnClickListener { view ->
+                val action = BottomSheetFragmentDirections
+                    .actionGlobalToDetailsFragment(currentItem.id, currentItem)
+                Navigation.findNavController(view).navigate(action)
+            }
+
+             */
+
             Glide.with(root)
                 .load(currentItem.image)
                 .transition(DrawableTransitionOptions.withCrossFade())

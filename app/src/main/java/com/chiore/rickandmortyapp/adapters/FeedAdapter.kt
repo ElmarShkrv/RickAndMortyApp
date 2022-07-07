@@ -11,9 +11,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.chiore.rickandmortyapp.R
 import com.chiore.rickandmortyapp.databinding.FeedFragmentRvBinding
+import com.chiore.rickandmortyapp.domain.models.Character
 import com.chiore.rickandmortyapp.enum.CharacterStatusEnums
 import com.chiore.rickandmortyapp.models.Characters
-import com.chiore.rickandmortyapp.models.EpisodeResult
 import com.chiore.rickandmortyapp.ui.fragments.feedfragment.FeedFragmentDirections
 
 class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(DiffCallback()) {
@@ -24,7 +24,7 @@ class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(Di
 
             itemView.setOnClickListener { view ->
                 val action = FeedFragmentDirections
-                    .actionGlobalToDetailsFragment(characters)
+                    .actionGlobalToDetailsFragment(characters.id)
                 Navigation.findNavController(view).navigate(action)
             }
 
