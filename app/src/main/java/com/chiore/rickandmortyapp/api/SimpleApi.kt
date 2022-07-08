@@ -17,6 +17,12 @@ interface SimpleApi {
         @Query("page") page: Int? = null
     ) : Response<CharacterResponse>
 
+    @GET("character/")
+    suspend fun getSearchCharacters(
+        @Query("name") searchQuery: String,
+        @Query("page") page: Int? = null
+    ) : Response<CharacterResponse>
+
     @GET("episode/")
     suspend fun getAllEpisodes(
         @Query("page") page: Int? = null

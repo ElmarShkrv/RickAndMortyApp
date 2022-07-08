@@ -16,7 +16,7 @@
         tools:layout="@layout/feed_fragment" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.chiore.rickandmortyapp.ui.fragments.SearchFragment"
+        android:name="com.chiore.rickandmortyapp.ui.fragments.searchfragment.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/search_fragment" />
     <fragment

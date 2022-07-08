@@ -46,7 +46,6 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
         setupUi()
         setupRv()
 
-
     }
 
     private fun setupUi() {

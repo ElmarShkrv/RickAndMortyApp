@@ -13,16 +13,17 @@ import com.chiore.rickandmortyapp.R
 import com.chiore.rickandmortyapp.databinding.FeedFragmentRvBinding
 import com.chiore.rickandmortyapp.enum.CharacterStatusEnums
 import com.chiore.rickandmortyapp.models.Characters
-import com.chiore.rickandmortyapp.ui.fragments.feedfragment.FeedFragmentDirections
+import com.chiore.rickandmortyapp.ui.fragments.searchfragment.SearchFragmentDirections
 
-class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(DiffCallback()) {
+class SearchAdapter :
+    PagingDataAdapter<Characters, SearchAdapter.SearchViewHolder>(DiffCallback()) {
 
-    inner class FeedViewHolder(private val binding: FeedFragmentRvBinding) :
+    inner class SearchViewHolder(private val binding: FeedFragmentRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(characters: Characters) {
 
             itemView.setOnClickListener { view ->
-                val action = FeedFragmentDirections
+                val action = SearchFragmentDirections
                     .actionGlobalToDetailsFragment(characters.id)
                 Navigation.findNavController(view).navigate(action)
             }
@@ -57,17 +58,15 @@ class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(Di
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val binding =
             FeedFragmentRvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FeedViewHolder(binding)
+        return SearchViewHolder(binding)
     }
 
-
-    override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }
-
 
     class DiffCallback : DiffUtil.ItemCallback<Characters>() {
         override fun areItemsTheSame(oldItem: Characters, newItem: Characters): Boolean {
@@ -78,4 +77,5 @@ class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(Di
             return oldItem == newItem
         }
     }
+
 }
