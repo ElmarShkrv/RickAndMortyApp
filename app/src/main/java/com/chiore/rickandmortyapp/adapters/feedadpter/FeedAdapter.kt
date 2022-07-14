@@ -1,4 +1,4 @@
-package com.chiore.rickandmortyapp.adapters
+package com.chiore.rickandmortyapp.adapters.feedadpter
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -10,15 +10,40 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.chiore.rickandmortyapp.R
+import com.chiore.rickandmortyapp.adapters.SaveAdapter
 import com.chiore.rickandmortyapp.databinding.FeedFragmentRvBinding
 import com.chiore.rickandmortyapp.enum.CharacterStatusEnums
 import com.chiore.rickandmortyapp.models.Characters
 import com.chiore.rickandmortyapp.ui.fragments.feedfragment.FeedFragmentDirections
+import com.chiore.rickandmortyapp.ui.fragments.feedfragment.viewmodel.states.ListType
 
-class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(DiffCallback()) {
+const val GRID_LAYOUT = 0
+const val LINEARLAYOUT = 1
 
-    inner class FeedViewHolder(private val binding: FeedFragmentRvBinding) :
+
+class FeedAdapter(
+    private var listType: ListType = ListType.GridLayout
+) : PagingDataAdapter<Characters, RecyclerView.ViewHolder>(DiffCallback()) {
+
+    fun setListType(listType: ListType) {
+        this.listType = listType
+    }
+
+    class FeedViewHolder(private val binding: FeedFragmentRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        companion object {
+            fun from(parent: ViewGroup): FeedViewHolder {
+                val binding = FeedFragmentRvBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+
+                return FeedViewHolder(binding)
+            }
+        }
+
         fun bind(characters: Characters) {
 
             itemView.setOnClickListener { view ->
@@ -33,11 +58,9 @@ class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(Di
                     .load(characters.image)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_launcher_background)
-                    .into(feedRvImage)
-                feedRvName.text = characters.name
-                feedRvStatus.text = characters.status
-                feedRvSpecies.text = characters.species
-                feedRvGender.text = characters.gender
+                    .into(characterImage)
+                characterName.text = characters.name
+                characterStatus.text = characters.status
 
                 when (characters.status) {
                     CharacterStatusEnums.CHARACTER_ALIVE.value -> imgCharacterStatus.setColorFilter(
@@ -55,17 +78,58 @@ class FeedAdapter : PagingDataAdapter<Characters, FeedAdapter.FeedViewHolder>(Di
                 }
             }
         }
+
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == GRID_LAYOUT) {
+            FeedViewHolder.from(parent)
+        } else {
+            SaveAdapter.SaveViewHolder.create(parent)
+        }
+
+    }
+
+    /*
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
+
+        return if (viewType == GRID_LAYOUT) {
+            FeedViewHolder.from(parent)
+        } else {
+            SaveAdapter.SaveViewHolder.create(parent)
+        }
+
+        /*
         val binding =
             FeedFragmentRvBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FeedViewHolder(binding)
+
+         */
+    }
+
+     */
+
+    override fun getItemViewType(position: Int): Int {
+        return when (listType) {
+            ListType.GridLayout -> GRID_LAYOUT
+            ListType.LinearLayout -> LINEARLAYOUT
+        }
     }
 
 
-    override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+        val characterModel = getItem(position)
+        if (listType == ListType.GridLayout) {
+            holder as FeedViewHolder
+            holder.bind(characterModel!!)
+        } else {
+            holder as SaveAdapter.SaveViewHolder
+            holder.bind(characterModel!!)
+        }
+
+        //getItem(position)?.let { holder.bind(it) }
     }
 
 

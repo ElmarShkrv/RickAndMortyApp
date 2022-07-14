@@ -5,6 +5,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.chiore.rickandmortyapp.api.SimpleApi
 import com.chiore.rickandmortyapp.models.Characters
+import com.chiore.rickandmortyapp.utils.Constants.Companion.STARTING_PAGE_INDEX
+import kotlinx.coroutines.delay
 
 class FeedFragmentPagingSource(
     private val simpleApi: SimpleApi
@@ -13,9 +15,10 @@ class FeedFragmentPagingSource(
         return null
     }
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Characters> {
-        val pageNumber = params.key ?: 1
+        val pageNumber = params.key ?: STARTING_PAGE_INDEX
         return try {
             val response = simpleApi.getAllCharacters(pageNumber)
+            //delay(2000)
             val pagedResponse = response.body()
             val data = pagedResponse?.results
 
@@ -28,7 +31,7 @@ class FeedFragmentPagingSource(
 
             LoadResult.Page(
                 data = data.orEmpty(),
-                prevKey = null,
+                prevKey = if (pageNumber == STARTING_PAGE_INDEX) null else pageNumber -1,
                 nextKey = nextPageNumber
             )
         } catch (e: Exception) {

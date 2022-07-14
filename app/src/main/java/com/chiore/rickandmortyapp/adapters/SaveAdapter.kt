@@ -4,28 +4,36 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.chiore.rickandmortyapp.R
-import com.chiore.rickandmortyapp.databinding.FeedFragmentRvBinding
-import com.chiore.rickandmortyapp.databinding.SaveFragmentBinding
 import com.chiore.rickandmortyapp.databinding.SaveRowBinding
 import com.chiore.rickandmortyapp.enum.CharacterStatusEnums
 import com.chiore.rickandmortyapp.models.Characters
-import com.chiore.rickandmortyapp.ui.fragments.searchfragment.SearchFragmentDirections
+import com.chiore.rickandmortyapp.ui.fragments.feedfragment.FeedFragmentDirections
 
-class SearchAdapter :
-    PagingDataAdapter<Characters, SearchAdapter.SearchViewHolder>(DiffCallback()) {
+class SaveAdapter() : RecyclerView.Adapter<SaveAdapter.SaveViewHolder>() {
 
-    inner class SearchViewHolder(private val binding: SaveRowBinding) :
+
+    class SaveViewHolder(val binding: SaveRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        companion object {
+            fun create(parent: ViewGroup): SaveViewHolder {
+                val binding = SaveRowBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+                return SaveViewHolder(binding)
+            }
+        }
+
         fun bind(characters: Characters) {
 
             itemView.setOnClickListener { view ->
-                val action = SearchFragmentDirections
+                val action = FeedFragmentDirections
                     .actionGlobalToDetailsFragment(characters.id)
                 Navigation.findNavController(view).navigate(action)
             }
@@ -37,7 +45,7 @@ class SearchAdapter :
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_launcher_background)
                     .into(feedRvImage)
-                saveRvGender.text = characters.name
+                saveRvName.text = characters.name
                 saveRvStatus.text = characters.status
                 saveRvSpecies.text = characters.species
                 saveRvGender.text = characters.gender
@@ -58,26 +66,20 @@ class SearchAdapter :
                 }
             }
         }
+
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        val binding =
-            SaveRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SearchViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SaveViewHolder {
+        TODO("Not yet implemented")
+        //return SaveViewHolder.create(parent)
     }
 
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+    override fun onBindViewHolder(holder: SaveViewHolder, position: Int) {
+        TODO("Not yet implemented")
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<Characters>() {
-        override fun areItemsTheSame(oldItem: Characters, newItem: Characters): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Characters, newItem: Characters): Boolean {
-            return oldItem == newItem
-        }
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
     }
 
 }
