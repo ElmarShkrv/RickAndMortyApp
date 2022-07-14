@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +15,7 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chiore.rickandmortyapp.R
 import com.chiore.rickandmortyapp.adapters.feedadpter.FeedAdapter
 import com.chiore.rickandmortyapp.adapters.feedadpter.FeedLoadStateAdapter
@@ -45,7 +47,6 @@ class FeedFragment : Fragment(R.layout.feed_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         widthWindowClass = CalculateWindowSize(requireActivity()).calculateCurrentWidthSize()
 
         setupRv()
@@ -63,6 +64,17 @@ class FeedFragment : Fragment(R.layout.feed_fragment) {
 
     }
 
+
+
+    private fun setListTypeIcon(imageView: ImageView) {
+        val icon = when (viewModel.getListType()) {
+            ListType.GridLayout -> R.drawable.ic_lin
+            else -> R.drawable.ic_grid
+        }
+        imageView.setImageResource(icon)
+
+    }
+
     private fun setCharacterListLayoutManager() {
         if (viewModel.getListType() == ListType.GridLayout) {
 
@@ -75,15 +87,6 @@ class FeedFragment : Fragment(R.layout.feed_fragment) {
             binding.feedRv.layoutManager = LinearLayoutManager(requireContext())
             feedAdapter.setListType(ListType.LinearLayout)
         }
-    }
-
-    private fun setListTypeIcon(imageView: ImageView) {
-        val icon = when (viewModel.getListType()) {
-            ListType.GridLayout -> R.drawable.ic_lin
-            else -> R.drawable.ic_grid
-        }
-        imageView.setImageResource(icon)
-
     }
 
     private fun initAdapter() {
@@ -122,16 +125,13 @@ class FeedFragment : Fragment(R.layout.feed_fragment) {
 
 
 
+
     private fun setupRv() {
         feedAdapter = FeedAdapter()
-        binding.feedRv.layoutManager =
-                GridLayoutManager(requireContext(),2)
-            //LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.feedRv.apply {
-            adapter = feedAdapter
-            setHasFixedSize(true)
-            visibility = View.VISIBLE
-        }
+        setCharacterListLayoutManager()
+        feedAdapter.stateRestorationPolicy =
+            RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+        binding.feedRv.adapter = feedAdapter
     }
 
 
