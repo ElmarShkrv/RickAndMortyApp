@@ -3,6 +3,7 @@ package com.chiore.rickandmortyapp.adapters.feedadpter
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -124,9 +125,20 @@ class FeedAdapter(
         if (listType == ListType.GridLayout) {
             holder as FeedViewHolder
             holder.bind(characterModel!!)
+
+            holder.itemView.animation = AnimationUtils.loadAnimation(
+                holder.itemView.context,
+                R.anim.scale_up
+            )
+
         } else {
             holder as SaveAdapter.SaveViewHolder
             holder.bind(characterModel!!)
+
+            holder.itemView.animation = AnimationUtils.loadAnimation(
+                holder.itemView.context,
+                R.anim.up_anim
+            )
         }
 
         //getItem(position)?.let { holder.bind(it) }
