@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -98,7 +99,10 @@ class FeedFragment : Fragment(R.layout.feed_fragment) {
 
         feedAdapter.addLoadStateListener { loadState ->
             binding.feedRv.isVisible = loadState.source.refresh is LoadState.NotLoading
-            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            binding.shimmerLayout.isVisible = loadState.source.refresh is LoadState.Loading
+            binding.imgListType.isInvisible = loadState.source.refresh is LoadState.Loading
+            binding.txtListType.isInvisible = loadState.source.refresh is LoadState.Loading
+            //binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
             binding.retryBtn.isVisible = loadState.source.refresh is LoadState.Error
             handleError(loadState)
         }

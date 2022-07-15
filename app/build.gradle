@@ -104,6 +104,9 @@ dependencies {
     // window Manager
     implementation "androidx.window:window:1.1.0-alpha02"
 
+    // Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
 }
 
 kapt {

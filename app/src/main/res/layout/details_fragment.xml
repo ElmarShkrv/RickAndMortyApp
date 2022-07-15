@@ -5,9 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_empty_fav"
+            app:fabSize="normal"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -51,10 +65,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/genderImageView"
-            android:visibility="visible"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginEnd="16dp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/nameTextView"
             tools:srcCompat="@drawable/ic_male" />
@@ -64,37 +78,37 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:text="Episode"
             android:textColor="?attr/colorOnBackground"
             android:textSize="28sp"
             android:textStyle="bold"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/aliveTextView"
-            android:text="Episode"/>
+            app:layout_constraintTop_toBottomOf="@+id/aliveTextView" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/detailsRv"
-            android:layout_margin="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/episode"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/episode" />
 
         <TextView
             android:id="@+id/Origin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:text="Origin"
             android:textColor="?attr/colorOnBackground"
             android:textSize="28sp"
             android:textStyle="bold"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsRv"
-            android:text="Origin" />
+            app:layout_constraintTop_toBottomOf="@+id/detailsRv" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/OriginTxt"
@@ -112,14 +126,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:text="Species"
             android:textColor="?attr/colorOnBackground"
             android:textSize="28sp"
             android:textStyle="bold"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/OriginTxt"
-            android:text="Species" />
+            app:layout_constraintTop_toBottomOf="@+id/OriginTxt" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/SpeciesTxt"

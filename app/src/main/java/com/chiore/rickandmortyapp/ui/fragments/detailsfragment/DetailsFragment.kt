@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.chiore.rickandmortyapp.R
 import com.chiore.rickandmortyapp.adapters.DetailsAdapter
 import com.chiore.rickandmortyapp.databinding.DetailsFragmentBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,12 +41,27 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         viewModel.refreshCharachter(args.characterId)
+        viewModel.saveCharacters(args.characterId)
 
         setupUi()
         setupRv()
+        setupSave()
 
+    }
+
+    private fun setupSave() {
+        viewModel.saveCharachterByLiveData.observe(
+            viewLifecycleOwner,
+            Observer { character ->
+                character?.let {
+                    binding.fab.setOnClickListener {
+                        viewModel.saveCharacter(character)
+                        Snackbar.make(requireView(), "Character Saved", Snackbar.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        )
     }
 
     private fun setupUi() {

@@ -18,7 +18,7 @@ class FeedFragmentPagingSource(
         val pageNumber = params.key ?: STARTING_PAGE_INDEX
         return try {
             val response = simpleApi.getAllCharacters(pageNumber)
-            //delay(2000)
+            delay(3000)
             val pagedResponse = response.body()
             val data = pagedResponse?.results
 

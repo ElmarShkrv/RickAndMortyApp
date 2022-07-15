@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/saveFragment"
-        android:name="com.chiore.rickandmortyapp.ui.fragments.SaveFragment"
+        android:name="com.chiore.rickandmortyapp.ui.fragments.savefragment.SaveFragment"
         android:label="SaveFragment"
         tools:layout="@layout/save_fragment" />
     <fragment

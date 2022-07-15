@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/dialog_bg.xml" value="0.1765" />
+        <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1765" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/ic_feed.xml" value="0.1765" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout-v28/feed_row.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
@@ -16,9 +17,10 @@
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/episode_details_fragment.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/episode_fragment.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/episode_row.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/feed_fragment.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/feed_fragment_rv.xml" value="0.1" />
+        <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/feed_fragment.xml" value="0.4" />
+        <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/feed_fragment_rv.xml" value="0.264" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/feed_row.xml" value="0.21014492753623187" />
+        <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/feed_shimmer_row.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/item_load_state.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/save_fragment.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/eliko/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/save_row.xml" value="0.22826086956521738" />

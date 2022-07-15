@@ -4,16 +4,20 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.chiore.rickandmortyapp.R
 import com.chiore.rickandmortyapp.databinding.SaveRowBinding
+import com.chiore.rickandmortyapp.domain.models.Character
 import com.chiore.rickandmortyapp.enum.CharacterStatusEnums
 import com.chiore.rickandmortyapp.models.Characters
 import com.chiore.rickandmortyapp.ui.fragments.feedfragment.FeedFragmentDirections
 
-class SaveAdapter() : RecyclerView.Adapter<SaveAdapter.SaveViewHolder>() {
+class SaveAdapter :
+    ListAdapter<Characters, SaveAdapter.SaveViewHolder>(DiffUtilCallBack()) {
 
 
     class SaveViewHolder(val binding: SaveRowBinding) :
@@ -70,16 +74,23 @@ class SaveAdapter() : RecyclerView.Adapter<SaveAdapter.SaveViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SaveViewHolder {
-        TODO("Not yet implemented")
-        //return SaveViewHolder.create(parent)
+        return SaveViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: SaveViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val characterDomain = getItem(position)
+        holder.bind(characterDomain)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+    class DiffUtilCallBack : DiffUtil.ItemCallback<Characters>() {
+        override fun areItemsTheSame(oldItem: Characters, newItem: Characters): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Characters, newItem: Characters): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
 }

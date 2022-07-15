@@ -6,32 +6,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txtListType"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/mainLinear"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="4dp"
-        android:textSize="20sp"
-        android:text="List Type"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/feedRv"/>
-
-    <ImageView
-        android:id="@+id/imgListType"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="16dp"
-        android:contentDescription="List Type"
-        android:padding="8dp"
-        android:src="@drawable/ic_lin"
-        app:layout_constraintBottom_toBottomOf="@+id/txtListType"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtListType" />
+        app:layout_constraintBottom_toTopOf="@+id/feedRv">
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linear2"
+            app:layout_constraintBottom_toTopOf="@+id/feedRv">
+
+            <TextView
+                android:id="@+id/txtListType"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="20sp"
+                android:layout_gravity=""
+                android:text="List Type"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            app:layout_constraintStart_toEndOf="@+id/linear"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/feedRv">
+
+            <ImageView
+                android:id="@+id/imgListType"
+                android:layout_width="40dp"
+                android:padding="8dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="List Type"
+                android:src="@drawable/ic_lin" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/feed_shimmer_row" />
+
+            <include layout="@layout/feed_shimmer_row" />
+
+            <include layout="@layout/feed_shimmer_row" />
+
+            <include layout="@layout/feed_shimmer_row" />
+
+            <include layout="@layout/feed_shimmer_row" />
+
+            <include layout="@layout/feed_shimmer_row" />
+
+            <include layout="@layout/feed_shimmer_row" />
+
+            <include layout="@layout/feed_shimmer_row" />
+
+            <include layout="@layout/feed_shimmer_row" />
+
+            <include layout="@layout/feed_shimmer_row" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feedRv"
@@ -44,18 +117,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtListType"/>
+        app:layout_constraintTop_toBottomOf="@+id/mainLinear"/>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <Button
         android:id="@+id/retryBtn"

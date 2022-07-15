@@ -1,7 +1,9 @@
 package com.chiore.rickandmortyapp.di
 
 import android.content.Context
+import androidx.room.Room
 import com.chiore.rickandmortyapp.api.SimpleApi
+import com.chiore.rickandmortyapp.data.local.CharacterDatabase
 import com.chiore.rickandmortyapp.utils.NetworkConnectionInterceptor
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
@@ -23,6 +25,18 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun injectRoomDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(
+        context, CharacterDatabase::class.java, "CharacterDB"
+    ).build()
+
+    @Provides
+    @Singleton
+    fun injectDao(database: CharacterDatabase) = database.CharacterDao()
+
+    @Provides
+    @Singleton
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -39,7 +53,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient) : Retrofit =
+    fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder().apply {
             baseUrl("https://rickandmortyapi.com/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -48,7 +62,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCharacterApi(retrofit: Retrofit) : SimpleApi =
+    fun provideCharacterApi(retrofit: Retrofit): SimpleApi =
         retrofit.create(SimpleApi::class.java)
 
     @Provides
